@@ -229,5 +229,4 @@ def main():
         else:
             print( "Выберите верное действие" )
 
-if __name__ == "__main__":
     main()
