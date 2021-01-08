@@ -78,12 +78,20 @@ class Static():
     """Класс содержит статические методы"""
     @staticmethod
     def count_files(my_path):
+        '''
+        статический метод для подсчета файлов в деректории, используется библиотека os
+        :param my_path
+        '''
         path = my_path
         files = len(list(i for i in os.listdir(path) if os.path.isfile(os.path.join(path, i))))
         print(files)
 
     @staticmethod
     def print_in_con():
+        '''
+        cтатический метод для вывода информации из csv файла в консоль, здесь
+        используется итератор для перебора всех строк в таблице
+        '''
         number = Post_number()
         nick = Author_nick()
         post = Post_text()
@@ -154,6 +162,10 @@ class file_saver(Static):
                         self.likes.set_likes(i, row["likes"])
 
     def write_csv(self, field, nick, post, likes):
+        '''
+        Данный метод выполняет изменения в уже существующих записях в csv файле
+        :param field, nick, post, likes
+        '''
         v = file_saver()
         v.read_csv()
         field = int(field)-1
@@ -166,6 +178,11 @@ class file_saver(Static):
             raise KeyError
 
     def sort_by_likes(self):
+        '''
+        Данный метод осуществляет сортировку по количеству лайков
+        :param
+        :return отсортированный список словарей для генератора
+        '''
         d = []
         i = 0
         while True:
@@ -182,6 +199,9 @@ class file_saver(Static):
         yield d
         
     def show_top(self):
+        '''
+        Данный метод выводит в консоль записи по критерию(likes > 100)
+        '''
         i = 0
         while True:
             try:
@@ -229,4 +249,5 @@ def main():
         else:
             print( "Выберите верное действие" )
 
+if __name__ == "__main__":
     main()
